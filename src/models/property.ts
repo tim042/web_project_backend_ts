@@ -38,6 +38,8 @@ export interface IProperty extends Document {
     timezone?: string;
     currency: string;
     basePrice: number;
+    proMotion: 'none' | 'pro' | 'super pro';
+    proPrice: number;
     cancellationPolicy?: mongoose.Types.ObjectId | ICancellationPolicy;
     checkInTime?: string;
     checkOutTime?: string;
@@ -111,6 +113,15 @@ const propertySchema: Schema<IProperty> = new mongoose.Schema({
     basePrice: {
         type: Number,
         required: true,
+    },
+    proMotion:{
+        type: String,
+        enum:["none","pro","super pro"],
+        default: "none", 
+    },
+    proPrice:{
+        type: Number,
+        default: 0,
     },
     cancellationPolicy: {
         type: mongoose.Schema.Types.ObjectId,
