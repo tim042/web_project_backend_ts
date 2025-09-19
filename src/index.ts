@@ -18,24 +18,27 @@ connectDb();
 // Enable JSON body parsing
 app.use(express.json());
 
-// Use the main router for all API routes
-app.use("/api", main);
-
-// Enable Helmet middleware for security
+// Set security HTTP headers
 app.use(helmet());
 
-// Rate limiter
+// Apply rate limiting to all requests
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100,
 });
-
 app.use(limiter);
+
+// Use the main router for all API routes
+app.use("/api", main);
+
+// Basic route to check server status
+app.get("/", (req, res) => {
+  res.send("✅ Server is running with TypeScript + Express on Render");
+});
 
 // Define port with fallback
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`Server is running on: ${PORT}`);
+  console.log(`🚀 Server is running on port: ${PORT}`);
 });
-
