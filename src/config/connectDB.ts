@@ -6,7 +6,7 @@ dotenv.config();
 const connectDB = async (retries = 5, delay = 3000): Promise<void> => {
   for (let i = 0; i < retries; i++) {
     try {
-      const mongoUri = process.env.MongoDB_URI as string;
+      const mongoUri = process.env.MONGODB_URI as string;
       if (!mongoUri) {
         throw new Error("MongoDB_URI is not defined in environment variables");
       }
@@ -17,7 +17,7 @@ const connectDB = async (retries = 5, delay = 3000): Promise<void> => {
       return;
     } catch (err) {
       console.log(
-        `❌ Connection attempt ${i + 1} failed. Retrying in ${delay / 1000}s...`
+        `❌ Connection attempt ${i + 1} failed. Retrying in ${delay / 10000}s...`
       );
       await new Promise((res) => setTimeout(res, delay));
     }
