@@ -4,7 +4,7 @@ import { IAmenity } from './amenity';
 import { IMedia } from './media';
 import { IReview } from './review';
 import { ICancellationPolicy } from './cancellationPolicy';
-import { IUser }  from './user';
+import { IUser } from './user';
 
 require('./amenity');
 require('./media');
@@ -81,13 +81,13 @@ const propertySchema: Schema<IProperty> = new mongoose.Schema({
     location: {
         type: {
             type: String,
-            enum: ['Point'],
-            default: 'Point',
+            enum: ["Point"],
+            required: true
         },
         coordinates: {
             type: [Number],
-            required: true,
-        },
+            required: true
+        }
     },
     amenities: [{
         type: mongoose.Schema.Types.ObjectId,
