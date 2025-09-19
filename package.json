@@ -1,12 +1,12 @@
 {
   "name": "web_project_backend_ts",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "index.js",
   "type": "commonjs",
   "scripts": {
     "dev": "nodemon --watch src --ext ts,json --exec \"ts-node src/index.ts\"",
     "build": "tsc",
-    "start": "node src/index.ts"
+    "start":  "node dist/index.js"
   },
   "keywords": [],
   "author": "",
