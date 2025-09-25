@@ -33,7 +33,7 @@ export interface IProperty extends Document {
     address?: IAddress;
     location: ILocation;
     amenities: (mongoose.Types.ObjectId | IAmenity)[];
-    images: (mongoose.Types.ObjectId | IMedia)[];
+    images: [{ type: String }]
     reviews: (mongoose.Types.ObjectId | IReview)[];
     timezone?: string;
     currency: string;
@@ -95,9 +95,7 @@ const propertySchema: Schema<IProperty> = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Amenity',
     }],
-    images: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Media',
+    images: [{ type: String
     }],
     reviews: [{
         type: mongoose.Schema.Types.ObjectId,
